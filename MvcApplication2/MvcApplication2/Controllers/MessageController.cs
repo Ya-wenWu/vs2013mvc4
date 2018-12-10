@@ -34,7 +34,7 @@ namespace MvcApplication2.Controllers
             //呼叫Service 中DBCreate method
             data.DBCreate(Table_TITLE,CONTENT);
 
-            //導向至指定的Action
+            //導向至指定的Action:Index
             return RedirectToAction("Index");
         }
     }

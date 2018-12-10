@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+@Model IEnumerable<MvcApplication2.Models.Table>;
+
+@{ 
+    ViewBag.Title = "新增留言";
+}
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "Message")) {
+    <div>
+        @Html.Label("標題");
+        @Html.TextBox("Article_TITLE");
+        <br/>
+        @Html.Label("內容");
+        @Html.TextBox("Content");
+        <br/>
+        <input type="submit" value="Send_Message"/>
+    </div>
+}

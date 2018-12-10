@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+
+@Model IEnumerable<MvcApplication2.Models.Table>;
+@{
+    ViewBag.Title = "留言板";
+}
+
+<div>
+    @if (Model != null)
+    {
+        <table>
+            <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td>title:</td>
+                        <td>@item.TITLE</td>
+                    </tr>
+                    <tr>
+                        <td>留言內容：</td>
+                        <td>@item.CONTENT</td>
+                    </tr>
+                    <tr>
+                        <td>留言時間</td>
+                        <td>@item.TIME</td>
+                    </tr>
+                    <tr></tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+<br />
+
+<div>
+    @Html.ActionLink("讓我們來新增留言板吧");
+</div>
