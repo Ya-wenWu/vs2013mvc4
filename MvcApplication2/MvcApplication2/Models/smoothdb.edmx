@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="smoothdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CUSTOMER_RECORDS">
+          <Key>
+            <PropertyRef Name="NO" />
+          </Key>
+          <Property Name="NO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MEMBER_ID" Type="int" Nullable="false" />
+          <Property Name="DATE_Y" Type="int" Nullable="false" />
+          <Property Name="DATE_M" Type="int" Nullable="false" />
+          <Property Name="DATE_D" Type="int" Nullable="false" />
+          <Property Name="COST" Type="int" Nullable="false" />
+          <Property Name="KEYWORD" Type="int" Nullable="false" />
+          <Property Name="RECEIPT_NUM" Type="int" Nullable="false" />
+          <Property Name="MODIFY_DATE" Type="datetime" Nullable="false" />
+          <Property Name="MODIFY_USER" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CONTENT" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MEMBER_INFO">
+          <Key>
+            <PropertyRef Name="NO" />
+          </Key>
+          <Property Name="NO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MEMBER_ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PHONE" Type="int" Nullable="false" />
+          <Property Name="HOME_TEL" Type="int" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="datetime" Nullable="false" />
+          <Property Name="KEYWORD" Type="int" Nullable="false" />
+          <Property Name="RECEIPT_NUM" Type="int" Nullable="false" />
+          <Property Name="MODIFY_DATE" Type="datetime" Nullable="false" />
+          <Property Name="MODIFY_USER" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IDENTITY_ID" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="smoothdbModelStoreContainer">
+          <EntitySet Name="CUSTOMER_RECORDS" EntityType="Self.CUSTOMER_RECORDS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEMBER_INFO" EntityType="Self.MEMBER_INFO" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="smoothdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CUSTOMER_RECORDS">
+          <Key>
+            <PropertyRef Name="NO" />
+          </Key>
+          <Property Name="NO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MEMBER_ID" Type="Int32" Nullable="false" />
+          <Property Name="DATE_Y" Type="Int32" Nullable="false" />
+          <Property Name="DATE_M" Type="Int32" Nullable="false" />
+          <Property Name="DATE_D" Type="Int32" Nullable="false" />
+          <Property Name="COST" Type="Int32" Nullable="false" />
+          <Property Name="KEYWORD" Type="Int32" Nullable="false" />
+          <Property Name="RECEIPT_NUM" Type="Int32" Nullable="false" />
+          <Property Name="MODIFY_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MODIFY_USER" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MEMBER_INFO" Relationship="smoothdbModel.MEMBER_INFOCUSTOMER_RECORDS" FromRole="CUSTOMER_RECORDS" ToRole="MEMBER_INFO" />
+        </EntityType>
+        <EntityContainer Name="smoothdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CUSTOMER_RECORDS" EntityType="Self.CUSTOMER_RECORDS" />
+          <EntitySet Name="MEMBER_INFO" EntityType="smoothdbModel.MEMBER_INFO" />
+          <AssociationSet Name="MEMBER_INFOCUSTOMER_RECORDS" Association="smoothdbModel.MEMBER_INFOCUSTOMER_RECORDS">
+            <End Role="MEMBER_INFO" EntitySet="MEMBER_INFO" />
+            <End Role="CUSTOMER_RECORDS" EntitySet="CUSTOMER_RECORDS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="MEMBER_INFO">
+          <Key>
+            <PropertyRef Name="NO" />
+          </Key>
+          <Property Name="NO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MEMBER_ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE" Type="Int32" Nullable="false" />
+          <Property Name="HOME_TEL" Type="Int32" Nullable="false" />
+          <Property Name="CREATE_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="KEYWORD" Type="Int32" Nullable="false" />
+          <Property Name="RECEIPT_NUM" Type="Int32" Nullable="false" />
+          <Property Name="MODIFY_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MODIFY_USER" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDENTITY_ID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CUSTOMER_RECORDS" Relationship="smoothdbModel.MEMBER_INFOCUSTOMER_RECORDS" FromRole="MEMBER_INFO" ToRole="CUSTOMER_RECORDS" />
+        </EntityType>
+        <Association Name="MEMBER_INFOCUSTOMER_RECORDS">
+          <End Type="smoothdbModel.MEMBER_INFO" Role="MEMBER_INFO" Multiplicity="1" />
+          <End Type="smoothdbModel.CUSTOMER_RECORDS" Role="CUSTOMER_RECORDS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMBER_INFO">
+              <PropertyRef Name="NO" />
+            </Principal>
+            <Dependent Role="CUSTOMER_RECORDS">
+              <PropertyRef Name="MEMBER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="smoothdbModelStoreContainer" CdmEntityContainer="smoothdbEntities">
+          <EntitySetMapping Name="CUSTOMER_RECORDS">
+            <EntityTypeMapping TypeName="smoothdbModel.CUSTOMER_RECORDS">
+              <MappingFragment StoreEntitySet="CUSTOMER_RECORDS">
+                <ScalarProperty Name="NO" ColumnName="NO" />
+                <ScalarProperty Name="MEMBER_ID" ColumnName="MEMBER_ID" />
+                <ScalarProperty Name="DATE_Y" ColumnName="DATE_Y" />
+                <ScalarProperty Name="DATE_M" ColumnName="DATE_M" />
+                <ScalarProperty Name="DATE_D" ColumnName="DATE_D" />
+                <ScalarProperty Name="COST" ColumnName="COST" />
+                <ScalarProperty Name="KEYWORD" ColumnName="KEYWORD" />
+                <ScalarProperty Name="RECEIPT_NUM" ColumnName="RECEIPT_NUM" />
+                <ScalarProperty Name="MODIFY_DATE" ColumnName="MODIFY_DATE" />
+                <ScalarProperty Name="MODIFY_USER" ColumnName="MODIFY_USER" />
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEMBER_INFO">
+            <EntityTypeMapping TypeName="smoothdbModel.MEMBER_INFO">
+              <MappingFragment StoreEntitySet="MEMBER_INFO">
+                <ScalarProperty Name="IDENTITY_ID" ColumnName="IDENTITY_ID" />
+                <ScalarProperty Name="MODIFY_USER" ColumnName="MODIFY_USER" />
+                <ScalarProperty Name="MODIFY_DATE" ColumnName="MODIFY_DATE" />
+                <ScalarProperty Name="RECEIPT_NUM" ColumnName="RECEIPT_NUM" />
+                <ScalarProperty Name="KEYWORD" ColumnName="KEYWORD" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="HOME_TEL" ColumnName="HOME_TEL" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="MEMBER_ID" ColumnName="MEMBER_ID" />
+                <ScalarProperty Name="NO" ColumnName="NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
