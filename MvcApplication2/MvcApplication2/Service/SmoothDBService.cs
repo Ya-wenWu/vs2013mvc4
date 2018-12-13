@@ -7,7 +7,6 @@ using MvcApplication2.Models;//include model namespace
 namespace MvcApplication2.Service
 {
     /// <summary>
-    /// response for database I/O
     /// 1. 實作資料庫模型
     /// 2. 兩種公開方法的宣告：
     /// 　GetData() - 回傳資料庫中Article資料表的資料
@@ -15,17 +14,37 @@ namespace MvcApplication2.Service
     /// </summary>
     public class SmoothDBService
     {
-      //實作資料庫模型
-      public MvcApplication2.Models.smoothdbEntities db = new Models.smoothdbEntities();
+      public MvcApplication2.Models.smoothdbEntities db = new Models.smoothdbEntities();//實作資料庫模型
 
-      //取得資料庫中，Article資料表的資料並回傳
-      public List<CUSTOMER_RECORDS> GetData()
-      { 
-          return (db.CUSTOMER_RECORDS.ToList());
-      }
+      //取得資料庫中，CISTOMER_RECORDS資料表的資料並回傳
+       public List<CUSTOMER_RECORDS> GetSmoothData()
+       {
+          try
+          {
+              return (db.CUSTOMER_RECORDS.ToList());
+          }
+          catch (Exception ex)
+          {
+              #region 回傳預設資料
+              List<CUSTOMER_RECORDS>  tmp_res = new List<CUSTOMER_RECORDS>();
+              tmp_res.Add(new CUSTOMER_RECORDS { NO=00000000000 });
+              tmp_res.Add(new CUSTOMER_RECORDS { MEMBER_ID = 00000000 });
+              tmp_res.Add(new CUSTOMER_RECORDS { DATE_Y = 00000000 });
+              tmp_res.Add(new CUSTOMER_RECORDS { DATE_M = 00000000 });
+              tmp_res.Add(new CUSTOMER_RECORDS { DATE_D = 00000000 });
+              tmp_res.Add(new CUSTOMER_RECORDS { COST = 00000000 });
+              tmp_res.Add(new CUSTOMER_RECORDS { KEYWORD = 00000000 });
+              tmp_res.Add(new CUSTOMER_RECORDS { RECEIPT_NUM = 00000000 });
+              tmp_res.Add(new CUSTOMER_RECORDS { MODIFY_DATE = DateTime.Now });
+              tmp_res.Add(new CUSTOMER_RECORDS { MODIFY_USER = "exception error" });
+              tmp_res.Add(new CUSTOMER_RECORDS { CONTENT = "exception recore"+ex.Message.ToString() });
+              #endregion
+              return tmp_res;
+          } 
+        }
 
-      public void DBCreate(string _member_id, int _cost ,string _keyword) 
-      {
+        public void SmoothDBCreate(int _cost ,string _keyword) 
+        {
             CUSTOMER_RECORDS NewData = new CUSTOMER_RECORDS();
             DateTime tmp_dt = DateTime.Now;
             //NewData.NO = ;//流水號
@@ -46,8 +65,8 @@ namespace MvcApplication2.Service
 
             //儲存資料庫變更
             db.SaveChanges();
-      }
-        public void DBCreate(string _member_id, string _keyword)
+        }
+        public void SmoothDBCreate(string _keyword)
         {
             CUSTOMER_RECORDS NewData = new CUSTOMER_RECORDS();
             DateTime tmp_dt = DateTime.Now;
@@ -64,12 +83,8 @@ namespace MvcApplication2.Service
             NewData.MODIFY_DATE = DateTime.Now;
             NewData.MODIFY_USER = "SYS".ToString();
 
-            //新增一筆資料
-            db.CUSTOMER_RECORDS.Add(NewData);
-
-            //儲存資料庫變更
-            db.SaveChanges();
+            db.CUSTOMER_RECORDS.Add(NewData);//新增一筆資料
+            db.SaveChanges();//儲存資料庫變更
         }
-
     }
 }

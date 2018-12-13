@@ -11,7 +11,6 @@ namespace MvcApplication2.Controllers
     public class MessageController : Controller
     {
         // GET: /Message/
-
         //實作service object
         messageDBService data = new messageDBService();
 

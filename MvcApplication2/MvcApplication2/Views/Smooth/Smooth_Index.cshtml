@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Smooth_Index";
+}
+
+<h2>Index</h2>
+
+<h2>Smooth System - Index</h2>
+
+@Model IEnumerable<MvcApplication2.Models.CUSTOMER_RECORDS>
+    ;
+    @{
+        ViewBag.Title = "石沐汗坊會員記錄系統";
+    }
+
+    <div>
+        @if (Model != null)
+        {
+            <table border="1">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>流水號:</td>
+                            <td>@item.NO</td>
+                        </tr>
+                        <tr>
+                            <td>會員編號：</td>
+                            <td>@item.MEMBER_ID</td>
+                        </tr>
+                        <tr>
+                            <td>年</td>
+                            <td>@item.DATE_Y</td>
+                        </tr>
+                        <tr>
+                            <td>月</td>
+                            <td>@item.DATE_M</td>
+                        </tr>
+                        <tr>
+                            <td>日</td>
+                            <td>@item.DATE_D</td>
+                        </tr>
+                        <tr>
+                            <td>金額</td>
+                            <td>@item.COST</td>
+                        </tr>
+                        <tr></tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+    <br />
+
+    <div>
+        @Html.ActionLink("我們來新增石沐汗坊的會員紀錄資料吧!", "Create");
+    </div>

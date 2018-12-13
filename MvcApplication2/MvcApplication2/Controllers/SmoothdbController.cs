@@ -13,38 +13,34 @@ namespace MvcApplication2.Controllers
     /// </summary>
     public class SmoothdbController : Controller
     {
-        // GET: /Message/
+        SmoothDBService data = new SmoothDBService();//實作service object
 
-        //實作service object
-        SmoothDBService data = new SmoothDBService();
-
-        public ActionResult Index()
+        public ActionResult Smooth_Index()
         {
-            //將資料回傳view
-            return View(data.GetData());
+            return View(data.GetSmoothData()); 
         }
 
-        public ActionResult Create()
+        public ActionResult Smooth_Create()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(string _member_id, string _keyword)
+        public ActionResult Smooth_Create(string _keyword)
         {
             //呼叫Service 中DBCreate method
-            data.DBCreate(_member_id, _keyword);
+            data.SmoothDBCreate(_keyword);
 
             //導向至指定的Action:Index
-            return RedirectToAction("Index");
+            return RedirectToAction("Smooth_Index");
         }
-        public ActionResult Create(string _member_id, int _cost, string _keyword)
+        public ActionResult Smooth_Create(int _cost, string _keyword)
         {
             //呼叫Service 中DBCreate method
-            data.DBCreate(_member_id, _cost, _keyword);
+            data.SmoothDBCreate( _cost, _keyword);
 
             //導向至指定的Action:Index
-            return RedirectToAction("Index");
+            return RedirectToAction("Smooth_Index");
         }
     }
 }

@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Smooth_Create";
+}
+@Model IEnumerable<MvcApplication2.Models.CUSTOMER_RECORDS>;
+
+@{
+    ViewBag.Title = "新增石沐汗坊會員來訪資料";
+}
+<h2>Smooth System - Create</h2>
+@using (Html.BeginForm("Smooth_Create", "Smooth"))
+{
+    <div>
+        @Html.Label("會員報到用電話號碼：");
+        @Html.TextBox("_keyword");
+        <br />
+        @Html.Label("本次消費金額");
+        @Html.TextBox("_cost");
+        <br />
+        <input type="submit" value="Send_Message" />
+    </div>
+}
