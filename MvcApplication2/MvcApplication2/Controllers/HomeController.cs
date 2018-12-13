@@ -10,21 +10,21 @@ namespace MvcApplication2.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            ViewBag.Message = "修改這個樣板 to jump-start 你的ASP.NET MVC 應用程式.";
 
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            ViewBag.Message = "你的應用程式敘述頁面.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "你的聯絡資料頁面.";
 
             return View();
         }

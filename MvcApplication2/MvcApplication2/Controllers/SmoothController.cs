@@ -11,35 +11,28 @@ namespace MvcApplication2.Controllers
     /// <summary>
     /// 石沐汗坊
     /// </summary>
-    public class SmoothdbController : Controller
+    public class SmoothController : Controller
     {
-        SmoothDBService data = new SmoothDBService();//實作service object
+        SmoothDBService data = new SmoothDBService();
 
         public ActionResult Smooth_Index()
         {
             return View(data.GetSmoothData()); 
         }
-
         public ActionResult Smooth_Create()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Smooth_Create(string _keyword)
-        {
-            //呼叫Service 中DBCreate method
-            data.SmoothDBCreate(_keyword);
-
-            //導向至指定的Action:Index
-            return RedirectToAction("Smooth_Index");
-        }
+        //public ActionResult Smooth_Create(string _keyword)//不可以使用Override會出現異常(還不知道原因)
+        //{
+        //    data.SmoothDBCreate(_keyword);
+        //    return RedirectToAction("Smooth_Index");
+        //}
         public ActionResult Smooth_Create(int _cost, string _keyword)
         {
-            //呼叫Service 中DBCreate method
             data.SmoothDBCreate( _cost, _keyword);
-
-            //導向至指定的Action:Index
             return RedirectToAction("Smooth_Index");
         }
     }

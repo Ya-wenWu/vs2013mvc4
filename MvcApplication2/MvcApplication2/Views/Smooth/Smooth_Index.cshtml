@@ -1,13 +1,8 @@
 ﻿@{
     ViewBag.Title = "Smooth_Index";
 }
-
-<h2>Index</h2>
-
-<h2>Smooth System - Index</h2>
-
+<h2>石沐汗坊紀錄系統-Index</h2>
 @Model IEnumerable<MvcApplication2.Models.CUSTOMER_RECORDS>
-    ;
     @{
         ViewBag.Title = "石沐汗坊會員記錄系統";
     }
@@ -19,6 +14,9 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
+                        <tr>
+                            <td>===========================================</td>
+                        </tr>
                         <tr>
                             <td>流水號:</td>
                             <td>@item.NO</td>
@@ -43,6 +41,25 @@
                             <td>金額</td>
                             <td>@item.COST</td>
                         </tr>
+                        <tr>
+                            <td>關鍵字</td>
+                            <td>@item.KEYWORD</td>
+                        </tr>
+                        <tr>
+                            <td>交易編號</td>
+                            <td>@item.RECEIPT_NUM</td>
+                        </tr>
+                        <tr>
+                            <td>修改日</td>
+                            <td>@item.MODIFY_DATE</td>
+                        </tr>
+                        <tr>
+                            <td>修改人</td>
+                            <td>@item.MODIFY_USER</td>
+                        </tr>
+                        <tr>
+                            <td>===========================================</td>
+                        </tr>
                         <tr></tr>
                     }
                 </tbody>
@@ -52,5 +69,5 @@
     <br />
 
     <div>
-        @Html.ActionLink("我們來新增石沐汗坊的會員紀錄資料吧!", "Create");
+        @Html.ActionLink("我們來新增石沐汗坊的會員紀錄資料吧!", "Smooth_Create");
     </div>

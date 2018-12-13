@@ -9,15 +9,15 @@ namespace MvcApplication2.Service
     /// <summary>
     /// 1. 實作資料庫模型
     /// 2. 兩種公開方法的宣告：
-    /// 　GetData() - 回傳資料庫中Article資料表的資料
+    /// 　GetData()  - 回傳資料庫中Article資料表的資料
     /// 　DBCreate() - 將接收的資料存進資料模型中
     /// </summary>
     public class SmoothDBService
     {
-      public MvcApplication2.Models.smoothdbEntities db = new Models.smoothdbEntities();//實作資料庫模型
+      public MvcApplication2.Models.smoothdbEntities db = new Models.smoothdbEntities();
 
-      //取得資料庫中，CISTOMER_RECORDS資料表的資料並回傳
-       public List<CUSTOMER_RECORDS> GetSmoothData()
+        #region  取得資料庫中，CISTOMER_RECORDS資料表的資料並回傳
+        public List<CUSTOMER_RECORDS> GetSmoothData()
        {
           try
           {
@@ -42,12 +42,13 @@ namespace MvcApplication2.Service
               return tmp_res;
           } 
         }
+        #endregion
 
+        #region 將使用者輸入內容存放到資料庫中(消費金額+關鍵字)
         public void SmoothDBCreate(int _cost ,string _keyword) 
         {
             CUSTOMER_RECORDS NewData = new CUSTOMER_RECORDS();
             DateTime tmp_dt = DateTime.Now;
-            //NewData.NO = ;//流水號
             NewData.MEMBER_ID = int.Parse(string.Format("{0:yyyyMMdd},{1:##########}",tmp_dt,_keyword));     //yyyymmdd+手機號碼(keyword:09xxxxxxxx)共18碼
 
             NewData.DATE_Y = int.Parse(tmp_dt.Year.ToString());                   //年
@@ -66,6 +67,9 @@ namespace MvcApplication2.Service
             //儲存資料庫變更
             db.SaveChanges();
         }
+        #endregion
+
+        #region 存放資料庫(關鍵字)
         public void SmoothDBCreate(string _keyword)
         {
             CUSTOMER_RECORDS NewData = new CUSTOMER_RECORDS();
@@ -86,5 +90,6 @@ namespace MvcApplication2.Service
             db.CUSTOMER_RECORDS.Add(NewData);//新增一筆資料
             db.SaveChanges();//儲存資料庫變更
         }
+        #endregion
     }
 }
