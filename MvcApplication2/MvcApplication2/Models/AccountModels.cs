@@ -8,8 +8,14 @@ using System.Web.Security;
 
 namespace MvcApplication2.Models
 {
+    /// <summary>
+    /// 使用者內容物件
+    /// </summary>
     public class UsersContext : DbContext
     {
+        /// <summary>
+        /// 建立資料庫連結 - DB name: DefaultConnection
+        /// </summary>
         public UsersContext()
             : base("DefaultConnection")
         {
@@ -17,7 +23,9 @@ namespace MvcApplication2.Models
 
         public DbSet<UserProfile> UserProfiles { get; set; }
     }
-
+    /// <summary>
+    /// UserProfile資料表物件
+    /// </summary>
     [Table("UserProfile")]
     public class UserProfile
     {
@@ -27,6 +35,9 @@ namespace MvcApplication2.Models
         public string UserName { get; set; }
     }
 
+    /// <summary>
+    /// 使用者註冊登入時間模組(待確認)
+    /// </summary>
     public class RegisterExternalLoginModel
     {
         [Required]
@@ -36,6 +47,9 @@ namespace MvcApplication2.Models
         public string ExternalLoginData { get; set; }
     }
 
+    /// <summary>
+    /// 使用者輸入更換登入密碼模組
+    /// </summary>
     public class LocalPasswordModel
     {
         [Required]
@@ -55,6 +69,9 @@ namespace MvcApplication2.Models
         public string ConfirmPassword { get; set; }
     }
 
+    /// <summary>
+    /// 使用者登入頁面模組
+    /// </summary>
     public class LoginModel
     {
         [Required]
