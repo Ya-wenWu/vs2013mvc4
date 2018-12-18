@@ -33,16 +33,18 @@ namespace MvcApplication2.Filters
 
                 try
                 {
-                    //新建一個新的UsersContext物件
+                    //新建一個新的UsersContext物件來啟動跟初始化DefaultConnection資料庫連結
                     using (var context = new UsersContext())
                     {
+                        //確認資料庫是否活著
                         if (!context.Database.Exists())
                         {
+                            //如果不存在就建立一個不使用entity framework的資料庫連線，此處建立System.Data.Objects.
                             // Create the SimpleMembership database without Entity Framework migration schema
                             ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
                         }
                     }
-
+                    //以安全性跟授權特徵方式(WebSercurtiy)啟動資料庫連結-DefaultConnection(資料庫名稱,Table名稱,欄位名稱1,欄位名稱2,bool 自動生成資料表)
                     WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
                 }
                 catch (Exception ex)

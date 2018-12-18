@@ -37,6 +37,7 @@ namespace MvcApplication2.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
+                //todo:在這裡加再新寫入 會員登入紀錄資料表customer_records
                 return RedirectToLocal(returnUrl);
             }
 

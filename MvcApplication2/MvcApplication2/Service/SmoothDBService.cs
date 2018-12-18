@@ -73,7 +73,7 @@ namespace MvcApplication2.Service
             try {
                 db.SaveChanges();
             } catch (Exception ex) {
-                throw ;
+                throw ex;
             }
             
         }
