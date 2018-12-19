@@ -49,7 +49,10 @@ namespace MvcApplication2.Service
         {
             CUSTOMER_RECORDS NewData = new CUSTOMER_RECORDS();
             DateTime tmp_dt = DateTime.Now;
-            NewData.MEMBER_ID = int.Parse(string.Format("{0:yyyyMMdd},{1:##########}",tmp_dt,_keyword));     //yyyymmdd+手機號碼(keyword:09xxxxxxxx)共18碼
+
+            //todo:存入會員編號時的資料型態會出現問題
+            //NewData.MEMBER_ID = int.Parse(string.Format("{0:yyyyMMdd},{1:###########}", DateTime.Now, _keyword));     //yyyymmdd+手機號碼(keyword:09xxxxxxxx)共18碼
+            NewData.MEMBER_ID = 1;
 
             NewData.DATE_Y = int.Parse(tmp_dt.Year.ToString());                   //年
             NewData.DATE_M = int.Parse(tmp_dt.Month.ToString());                  //月
@@ -57,7 +60,9 @@ namespace MvcApplication2.Service
 
             NewData.COST = _cost;                 //消費金額
             NewData.KEYWORD = int.Parse(_keyword);//會員固定認證號碼
-            NewData.RECEIPT_NUM = int.Parse(string.Format("{0:yyyyMMddHHmmssfffff},{1:#####}", tmp_dt,"99999"));
+            //todo:存入RECEIPT_NUM時的資料型態會出現問題
+            //NewData.RECEIPT_NUM = int.Parse(string.Format("{0:yyyyMMddHHmmssfffff},{1:#####}", tmp_dt,"99999"));
+            NewData.RECEIPT_NUM = 1234567897;
             NewData.MODIFY_DATE = DateTime.Now;
             NewData.MODIFY_USER = "SYS".ToString();
            
@@ -65,7 +70,12 @@ namespace MvcApplication2.Service
             db.CUSTOMER_RECORDS.Add(NewData);
 
             //儲存資料庫變更
-            db.SaveChanges();
+            try {
+                db.SaveChanges();
+            } catch (Exception ex) {
+                throw ;
+            }
+            
         }
         #endregion
 
