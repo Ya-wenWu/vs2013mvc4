@@ -5,6 +5,7 @@ using System.Web.Http;
 
 namespace MvcApplication2
 {
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)

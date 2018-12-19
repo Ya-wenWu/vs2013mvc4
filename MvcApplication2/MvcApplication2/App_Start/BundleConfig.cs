@@ -3,6 +3,9 @@ using System.Web.Optimization;
 
 namespace MvcApplication2
 {
+    /// <summary>
+    /// 自動javacsript css 自動化打包
+    /// </summary>
     public class BundleConfig
     {
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725

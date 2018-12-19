@@ -17,19 +17,24 @@ namespace MvcApplication2.Controllers
 
         public ActionResult Smooth_Index()
         {
+            //var result = studentBaseService.getStudentList();
             return View(data.GetSmoothData()); 
         }
+
+        //[HttpGet]
         public ActionResult Smooth_Create()
         {
+            //StudentViewModel data = new StudentViewModel();
             return View();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_cost"></param>
+        /// <param name="_keyword"></param>
+        /// <returns></returns>
         [HttpPost]
-        //public ActionResult Smooth_Create(string _keyword)//不可以使用Override會出現異常(還不知道原因)
-        //{
-        //    data.SmoothDBCreate(_keyword);
-        //    return RedirectToAction("Smooth_Index");
-        //}
         public ActionResult Smooth_Create(int _cost, string _keyword)
         {
             data.SmoothDBCreate( _cost, _keyword);

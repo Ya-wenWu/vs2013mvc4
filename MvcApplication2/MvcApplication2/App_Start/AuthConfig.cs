@@ -7,8 +7,12 @@ using MvcApplication2.Models;
 
 namespace MvcApplication2
 {
+    /// <summary>
+    /// OuAuth驗證組態設定
+    /// </summary>
     public static class AuthConfig
     {
+        //註冊授權介面
         public static void RegisterAuth()
         {
             // To let users of this site log in using their accounts from other sites such as Microsoft, Facebook, and Twitter,

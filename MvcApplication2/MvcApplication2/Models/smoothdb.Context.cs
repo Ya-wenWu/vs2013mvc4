@@ -15,8 +15,7 @@ namespace MvcApplication2.Models
     
     public partial class smoothdbEntities : DbContext
     {
-        public smoothdbEntities()
-            : base("name=smoothdbEntities")
+        public smoothdbEntities(): base("name=smoothdbEntities")
         {
         }
     

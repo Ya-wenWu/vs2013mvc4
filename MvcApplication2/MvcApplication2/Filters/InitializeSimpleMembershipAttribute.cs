@@ -6,6 +6,10 @@ using System.Web.Mvc;
 using WebMatrix.WebData;
 using MvcApplication2.Models;
 
+/// <summary>
+/// 會員資訊過濾器
+/// -在管線中會優先處理過濾器，在每個Action/Controller/全域設置　到全部Controller的認證邏輯
+/// </summary>
 namespace MvcApplication2.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
