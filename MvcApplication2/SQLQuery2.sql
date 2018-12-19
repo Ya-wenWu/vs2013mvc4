@@ -1,1 +1,1 @@
-﻿select * from UserProfile;
+﻿SELECT * FROM CUSTOMER_RECORDS;

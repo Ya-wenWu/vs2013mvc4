@@ -41,7 +41,7 @@ namespace MvcApplication2.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "您的使用者名稱或密碼輸入有誤! The user name or password provided is incorrect.");
+            ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
         }
 
@@ -128,9 +128,9 @@ namespace MvcApplication2.Controllers
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "您的密碼已被重置 Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "您的密碼已設置完成 Your password has been set."
-                : message == ManageMessageId.RemoveLoginSuccess ? "您的持續登入已被移除 The external login was removed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");
@@ -168,7 +168,7 @@ namespace MvcApplication2.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "您的密碼有誤! The current password is incorrect or the new password is invalid.");
+                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
                     }
                 }
             }
@@ -191,7 +191,7 @@ namespace MvcApplication2.Controllers
                     }
                     catch (Exception)
                     {
-                        ModelState.AddModelError("", String.Format("無法建立新帳號 Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
+                        ModelState.AddModelError("", String.Format("Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
                     }
                 }
             }
@@ -280,7 +280,7 @@ namespace MvcApplication2.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("UserName", "該使用者名稱已存在 User name already exists. Please enter a different user name.");
+                        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
                     }
                 }
             }

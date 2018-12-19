@@ -6,19 +6,10 @@ using System.Data.Entity;
 using System.Globalization;
 using System.Web.Security;
 
-/// <summary>
-/// 使用者帳號會用到的相關資料物件
-/// </summary>
 namespace MvcApplication2.Models
 {
-    /// <summary>
-    /// 使用者內容物件
-    /// </summary>
     public class UsersContext : DbContext
     {
-        /// <summary>
-        /// 建立資料庫連結 - DB name: DefaultConnection
-        /// </summary>
         public UsersContext()
             : base("DefaultConnection")
         {
@@ -26,9 +17,7 @@ namespace MvcApplication2.Models
 
         public DbSet<UserProfile> UserProfiles { get; set; }
     }
-    /// <summary>
-    /// UserProfile資料表物件
-    /// </summary>
+
     [Table("UserProfile")]
     public class UserProfile
     {
@@ -38,9 +27,6 @@ namespace MvcApplication2.Models
         public string UserName { get; set; }
     }
 
-    /// <summary>
-    /// 使用者註冊登入時間模組(待確認)
-    /// </summary>
     public class RegisterExternalLoginModel
     {
         [Required]
@@ -50,9 +36,6 @@ namespace MvcApplication2.Models
         public string ExternalLoginData { get; set; }
     }
 
-    /// <summary>
-    /// 使用者輸入更換登入密碼回覆結果模組
-    /// </summary>
     public class LocalPasswordModel
     {
         [Required]
@@ -68,50 +51,43 @@ namespace MvcApplication2.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "您的密碼與設定不相符! The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
-    /// <summary>
-    /// 使用者登入頁面模組
-    /// </summary>
     public class LoginModel
     {
         [Required]
-        [Display(Name = "使用者帳號 User name")]
+        [Display(Name = "User name")]
         public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "使用者密碼 Password")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "是否記住帳號密碼 Remember me?")]
+        [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
 
-    //註冊用模型
     public class RegisterModel
     {
         [Required]
-        [Display(Name = "使用者名稱 User name")]
+        [Display(Name = "User name")]
         public string UserName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "密碼 Password")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "再次輸入您的密碼 Confirm password")]
+        [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
-    /// <summary>
-    /// 持續保留登入資料物件
-    /// </summary>
     public class ExternalLogin
     {
         public string Provider { get; set; }

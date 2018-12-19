@@ -25,19 +25,14 @@ namespace MvcApplication2.Filters
             LazyInitializer.EnsureInitialized(ref _initializer, ref _isInitialized, ref _initializerLock);
         }
 
-        /// <summary>
-        /// 初始化資料庫實體
-        /// </summary>
         private class SimpleMembershipInitializer
         {
             public SimpleMembershipInitializer()
             {
-                //建立初始化 SetUnitializer 資料型態為UserContext:DBContent 的泛型類別
                 Database.SetInitializer<UsersContext>(null);
 
                 try
                 {
-                    //新建一個新的UsersContext物件
                     using (var context = new UsersContext())
                     {
                         if (!context.Database.Exists())

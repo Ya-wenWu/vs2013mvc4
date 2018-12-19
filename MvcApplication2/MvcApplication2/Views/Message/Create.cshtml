@@ -1,14 +1,11 @@
 ﻿@{
     ViewBag.Title = "新增留言版Create";
 }
-Model IEnumerable<MvcApplication2.Models.Table>;
+@Model IEnumerable<MvcApplication2.Models.Table>;
 
 @{ 
     ViewBag.Title = "新增留言";
-} 
-   <hgroup class="title">
-       <h1><@ViewBag.Title.</h1>
-   </hgroup>
+}
 <h2>Create</h2>
 @using (Html.BeginForm("Create", "Message")) {
     <div>
