@@ -20,7 +20,7 @@ namespace MvcApplication2.Models
         public Nullable<int> DATE_M { get; set; }
         public Nullable<int> DATE_D { get; set; }
         public Nullable<double> COST { get; set; }
-        public Nullable<int> KEYWORD { get; set; }
+        public string KEYWORD { get; set; }
         public Nullable<int> RECEIPT_NUM { get; set; }
         public Nullable<System.DateTime> MODIFY_DATE { get; set; }
         public string MODIFY_USER { get; set; }

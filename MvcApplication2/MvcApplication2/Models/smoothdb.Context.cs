@@ -15,7 +15,8 @@ namespace MvcApplication2.Models
     
     public partial class smoothdbEntities : DbContext
     {
-        public smoothdbEntities(): base("name=smoothdbEntities")
+        public smoothdbEntities()
+            : base("name=smoothdbEntities")
         {
         }
     
@@ -27,11 +28,7 @@ namespace MvcApplication2.Models
         public DbSet<MEMBER_INFO> MEMBER_INFO { get; set; }
         public DbSet<MEMBER_INFO2> MEMBER_INFO2 { get; set; }
         public DbSet<Table2> Table2 { get; set; }
+        public DbSet<CONTENT> CONTENTs { get; set; }
         public DbSet<CUSTOMER_RECORDS> CUSTOMER_RECORDS { get; set; }
-        public DbSet<ContentModels> CONTENT { get; set; }
-
-
-
     }
-
 }

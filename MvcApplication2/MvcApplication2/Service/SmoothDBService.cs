@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MvcApplication2.Models;//include model namespace
+using MvcApplication2.Controllers;
 
 namespace MvcApplication2.Service
 {
@@ -33,7 +34,7 @@ namespace MvcApplication2.Service
               tmp_res.Add(new CUSTOMER_RECORDS { DATE_M = 00000000 });
               tmp_res.Add(new CUSTOMER_RECORDS { DATE_D = 00000000 });
               tmp_res.Add(new CUSTOMER_RECORDS { COST = 00000000 });
-              tmp_res.Add(new CUSTOMER_RECORDS { KEYWORD = 00000000 });
+              tmp_res.Add(new CUSTOMER_RECORDS { KEYWORD = "00000000" });
               tmp_res.Add(new CUSTOMER_RECORDS { RECEIPT_NUM = 00000000 });
               tmp_res.Add(new CUSTOMER_RECORDS { MODIFY_DATE = DateTime.Now });
               tmp_res.Add(new CUSTOMER_RECORDS { MODIFY_USER = "exception error" });
@@ -44,39 +45,59 @@ namespace MvcApplication2.Service
         }
         #endregion
 
+        /// <summary>
+        /// 加入會員到訪紀錄
+        /// </summary>
+        /// <param name="_cost">消費金額</param>
+        /// <param name="_keyword">手機號碼</param>
         #region 將使用者輸入內容存放到資料庫中(消費金額+關鍵字)
         public void SmoothDBCreate(int _cost ,string _keyword) 
         {
             CUSTOMER_RECORDS NewData = new CUSTOMER_RECORDS();
             DateTime tmp_dt = DateTime.Now;
 
-            //todo:存入會員編號時的資料型態會出現問題
-            //NewData.MEMBER_ID = int.Parse(string.Format("{0:yyyyMMdd},{1:###########}", DateTime.Now, _keyword));     //yyyymmdd+手機號碼(keyword:09xxxxxxxx)共18碼
-            NewData.MEMBER_ID = int.Parse(_keyword);
+            int number;
+            bool success = Int32.TryParse(_keyword, out number);
+            if (success)
+                number = Convert.ToInt32(_keyword);
 
-            NewData.DATE_Y = int.Parse(tmp_dt.Year.ToString());                   //年
-            NewData.DATE_M = int.Parse(tmp_dt.Month.ToString());                  //月
-            NewData.DATE_D = int.Parse(tmp_dt.Day.ToString());                    //日
-
-            NewData.COST = _cost;                 //消費金額
-            NewData.KEYWORD = int.Parse(_keyword);//會員固定認證號碼
-            //todo:存入RECEIPT_NUM時的資料型態會出現問題
-            //NewData.RECEIPT_NUM = int.Parse(string.Format("{0:yyyyMMddHHmmssfffff},{1:#####}", tmp_dt,"99999"));
-            NewData.RECEIPT_NUM = 1234567897;
-            NewData.MODIFY_DATE = DateTime.Now;
-            NewData.MODIFY_USER = "SYS".ToString();
-            NewData.NOTE = "NONE".ToString();
-           
-            //新增一筆資料
-            db.CUSTOMER_RECORDS.Add(NewData);
-
-            //儲存資料庫變更
-            try {
-                db.SaveChanges();
-            } catch (Exception ex) {
-                throw ;
+            //判斷_keyword是否為小於10碼,若否就顯示手機號碼需小於十碼
+            if (Math.Floor(Math.Log10(number) + 1) > 10)
+            {
+                //todo:顯示輸入手機號碼錯誤訊息
             }
-            
+            else
+            {
+                //todo:存入會員編號時的資料型態會出現問題
+                //NewData.MEMBER_ID = int.Parse(string.Format("{0:yyyyMMdd},{1:###########}", DateTime.Now, _keyword));     //yyyymmdd+手機號碼(keyword:09xxxxxxxx)共18碼
+                NewData.MEMBER_ID = number;
+
+                NewData.DATE_Y = int.Parse(tmp_dt.Year.ToString());                   //年
+                NewData.DATE_M = int.Parse(tmp_dt.Month.ToString());                  //月
+                NewData.DATE_D = int.Parse(tmp_dt.Day.ToString());                    //日
+
+                NewData.COST = _cost;                 //消費金額
+                NewData.KEYWORD = _keyword;//會員固定認證號碼
+                                           //todo:存入RECEIPT_NUM時的資料型態會出現問題
+                                           //NewData.RECEIPT_NUM = int.Parse(string.Format("{0:yyyyMMddHHmmssfffff},{1:#####}", tmp_dt,"99999"));
+                NewData.RECEIPT_NUM = NewData.DATE_Y + NewData.DATE_M + NewData.DATE_D + 567897 + int.Parse(tmp_dt.Hour.ToString()) + int.Parse(tmp_dt.Second.ToString()) + int.Parse(tmp_dt.Minute.ToString());
+                NewData.MODIFY_DATE = DateTime.Now;
+                NewData.MODIFY_USER = "SYS".ToString();
+                NewData.NOTE = "NONE".ToString();
+
+                //新增一筆資料
+                db.CUSTOMER_RECORDS.Add(NewData);
+
+                //儲存資料庫變更
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
         }
         #endregion
 
@@ -93,7 +114,7 @@ namespace MvcApplication2.Service
             NewData.DATE_D = int.Parse(tmp_dt.Day.ToString());                    //日
 
             NewData.COST = 0;                 //消費金額
-            NewData.KEYWORD = int.Parse(_keyword);//會員固定認證號碼
+            NewData.KEYWORD = _keyword;//會員固定認證號碼
             NewData.RECEIPT_NUM = int.Parse(string.Format("{0:yyyyMMddHHmmssfffff},{1:#####}", tmp_dt, "99999"));
             NewData.MODIFY_DATE = DateTime.Now;
             NewData.MODIFY_USER = "SYS".ToString();
@@ -110,15 +131,26 @@ namespace MvcApplication2.Service
         /// <param name="_content"></param>
         public void Create_Conent(string _name, string _content)
         {
-            ContentModels adddata = new ContentModels();
+            CONTENT adddata = new CONTENT();
 
             //資料繫結
-            adddata.Message_name = _name;
-            adddata.Message_content = _content;
+            adddata.name = _name;
+            adddata.content1 = _content;
 
             //將資料加入content資料表中
             //db.ContentModels.Add(adddata);
-            db.CONTENT.Add(adddata);
+            db.CONTENTs.Add(adddata);
+            db.SaveChanges();
+        }
+        /// <summary>
+        /// 新增資料表CONTENT，採用CONTENTs模組
+        /// </summary>
+        /// <param name="_Newdata"></param>
+        public void Create(CONTENT _Newdata)
+        {
+            //將資料加入資料表
+            db.CONTENTs.Add(_Newdata);
+            //儲存資料庫變更
             db.SaveChanges();
         }
     }

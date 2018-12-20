@@ -33,7 +33,7 @@ namespace MvcApplication2.Service
           NewData.TIME = DateTime.Now;//文章發表時間
 
           //新增一筆資料
-          db.Table.Add(NewData);
+          db.Table.Add(NewData);//待修正
 
           //儲存資料庫變更
           db.SaveChanges();

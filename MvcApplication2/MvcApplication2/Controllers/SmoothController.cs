@@ -17,14 +17,16 @@ namespace MvcApplication2.Controllers
 
         public ActionResult Smooth_Index()
         {
-            //var result = studentBaseService.getStudentList();
-            return View(data.GetSmoothData()); 
+            return View(data.GetSmoothData());
         }
 
         //[HttpGet]
+        /// <summary>
+        /// 顯示加入會員來訪紀錄頁
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Smooth_Create()
         {
-            //StudentViewModel data = new StudentViewModel();
             return View();
         }
 
@@ -37,8 +39,10 @@ namespace MvcApplication2.Controllers
         [HttpPost]
         public ActionResult Smooth_Create(int _cost, string _keyword)
         {
-            data.SmoothDBCreate( _cost, _keyword);
-            return RedirectToAction("Smooth_Index");
+            data.SmoothDBCreate(_cost, _keyword);
+
+            //todo:收到controller回傳的結果在進行結果跳轉與顯示
+           return RedirectToAction("Smooth_Index");
         }
 
     }

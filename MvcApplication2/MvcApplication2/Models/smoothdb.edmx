@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="smoothdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CONTENT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" />
+          <Property Name="content" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="CUSTOMER_RECORDS">
           <Key>
             <PropertyRef Name="NO" />
@@ -16,7 +24,7 @@
           <Property Name="DATE_M" Type="int" />
           <Property Name="DATE_D" Type="int" />
           <Property Name="COST" Type="float" />
-          <Property Name="KEYWORD" Type="int" />
+          <Property Name="KEYWORD" Type="nvarchar" MaxLength="180" />
           <Property Name="RECEIPT_NUM" Type="int" />
           <Property Name="MODIFY_DATE" Type="datetime" />
           <Property Name="MODIFY_USER" Type="nvarchar(max)" />
@@ -61,6 +69,7 @@
           <Property Name="table2_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="smoothdbModelStoreContainer">
+          <EntitySet Name="CONTENT" EntityType="Self.CONTENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CUSTOMER_RECORDS" EntityType="Self.CUSTOMER_RECORDS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEMBER_INFO" EntityType="Self.MEMBER_INFO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEMBER_INFO2" EntityType="Self.MEMBER_INFO2" Schema="dbo" store:Type="Tables" />
@@ -74,6 +83,7 @@
           <EntitySet Name="MEMBER_INFO" EntityType="smoothdbModel.MEMBER_INFO" />
           <EntitySet Name="MEMBER_INFO2" EntityType="smoothdbModel.MEMBER_INFO2" />
           <EntitySet Name="Table2" EntityType="smoothdbModel.Table2" />
+          <EntitySet Name="CONTENTs" EntityType="smoothdbModel.CONTENT" />
           <EntitySet Name="CUSTOMER_RECORDS" EntityType="smoothdbModel.CUSTOMER_RECORDS" />
         </EntityContainer>
         <EntityType Name="MEMBER_INFO">
@@ -114,6 +124,14 @@
           </Key>
           <Property Name="table2_Id" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="CONTENT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="content1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="CUSTOMER_RECORDS">
           <Key>
             <PropertyRef Name="NO" />
@@ -125,7 +143,7 @@
           <Property Name="DATE_M" Type="Int32" />
           <Property Name="DATE_D" Type="Int32" />
           <Property Name="COST" Type="Double" />
-          <Property Name="KEYWORD" Type="Int32" />
+          <Property Name="KEYWORD" Type="String" MaxLength="180" FixedLength="false" Unicode="true" />
           <Property Name="RECEIPT_NUM" Type="Int32" />
           <Property Name="MODIFY_DATE" Type="DateTime" Precision="3" />
           <Property Name="MODIFY_USER" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -175,6 +193,15 @@
             <EntityTypeMapping TypeName="smoothdbModel.Table2">
               <MappingFragment StoreEntitySet="Table2">
                 <ScalarProperty Name="table2_Id" ColumnName="table2_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTENTs">
+            <EntityTypeMapping TypeName="smoothdbModel.CONTENT">
+              <MappingFragment StoreEntitySet="CONTENT">
+                <ScalarProperty Name="content1" ColumnName="content" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

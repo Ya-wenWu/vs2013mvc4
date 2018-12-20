@@ -195,7 +195,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\CONTENT.cs">
+      <DependentUpon>smoothdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ContentModels.cs" />
+    <Compile Include="Models\CustomerRecordsModel.cs" />
     <Compile Include="Models\CUSTOMER_RECORDS.cs">
       <DependentUpon>smoothdb.tt</DependentUpon>
     </Compile>

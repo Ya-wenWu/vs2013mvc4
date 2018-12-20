@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Smooth_Index";
 }
-<h2>石沐汗坊紀錄系統-Index</h2>
+<h2>石沐汗坊紀錄系統-主頁面</h2>
 @Model IEnumerable<MvcApplication2.Models.CUSTOMER_RECORDS>
     @{
         ViewBag.Title = "石沐汗坊會員記錄系統";
@@ -12,55 +12,34 @@
         {
             <table border="1">
                 <tbody>
+                    <tr color="red"></tr>
+                    <tr>
+                        <td>流水號:</td>
+                        <td>會員編號：</td>
+                        <td>年</td>
+                        <td>月</td>
+                        <td>日</td>
+                        <td>金額</td>
+                        <td>關鍵字</td>
+                        <td>交易編號</td>
+                        <td>修改日</td>
+                        <td>修改人</td>
+                    </tr>
+
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>===========================================</td>
-                        </tr>
-                        <tr>
-                            <td>流水號:</td>
                             <td>@item.NO</td>
-                        </tr>
-                        <tr>
-                            <td>會員編號：</td>
                             <td>@item.MEMBER_ID</td>
-                        </tr>
-                        <tr>
-                            <td>年</td>
                             <td>@item.DATE_Y</td>
-                        </tr>
-                        <tr>
-                            <td>月</td>
                             <td>@item.DATE_M</td>
-                        </tr>
-                        <tr>
-                            <td>日</td>
                             <td>@item.DATE_D</td>
-                        </tr>
-                        <tr>
-                            <td>金額</td>
                             <td>@item.COST</td>
-                        </tr>
-                        <tr>
-                            <td>關鍵字</td>
                             <td>@item.KEYWORD</td>
-                        </tr>
-                        <tr>
-                            <td>交易編號</td>
                             <td>@item.RECEIPT_NUM</td>
-                        </tr>
-                        <tr>
-                            <td>修改日</td>
                             <td>@item.MODIFY_DATE</td>
-                        </tr>
-                        <tr>
-                            <td>修改人</td>
                             <td>@item.MODIFY_USER</td>
                         </tr>
-                        <tr>
-                            <td>===========================================</td>
-                        </tr>
-                        <tr></tr>
                     }
                 </tbody>
             </table>
