@@ -1,11 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApplication2", "MvcApplication2\MvcApplication2.csproj", "{8969E779-0AAA-4929-91FE-3630E91873C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApplication2.Tests", "MvcApplication2.Tests\MvcApplication2.Tests.csproj", "{23EBF982-57CE-409C-9F1C-C92E2A3DEAF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketServer", "D:\SourceCode\C# project\SocketTest\SocketServer\SocketServer.csproj", "{C656BEDC-3888-4824-8B3E-21D4E12CA220}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketClient", "D:\SourceCode\C# project\SocketTest\SocketClient\SocketClient.csproj", "{9D3DE33B-38E1-471A-A3B6-6DE2941BB375}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Lib", "D:\SourceCode\C# project\SocketTest\Server.Lib\Server.Lib.csproj", "{FC4EADF0-49E8-41FE-A403-C09649B94188}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Lib", "D:\SourceCode\C# project\SocketTest\Client.lib\Client.Lib.csproj", "{749F5286-254F-47B6-BBFA-F30E874CC9B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLib", "D:\SourceCode\C# project\SocketTest\ClassLib\ClassLib.csproj", "{1FE4B3A4-2BC7-4372-B0CC-40776C3E93C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +31,26 @@ Global
 		{23EBF982-57CE-409C-9F1C-C92E2A3DEAF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23EBF982-57CE-409C-9F1C-C92E2A3DEAF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23EBF982-57CE-409C-9F1C-C92E2A3DEAF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C656BEDC-3888-4824-8B3E-21D4E12CA220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C656BEDC-3888-4824-8B3E-21D4E12CA220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C656BEDC-3888-4824-8B3E-21D4E12CA220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C656BEDC-3888-4824-8B3E-21D4E12CA220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D3DE33B-38E1-471A-A3B6-6DE2941BB375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D3DE33B-38E1-471A-A3B6-6DE2941BB375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D3DE33B-38E1-471A-A3B6-6DE2941BB375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D3DE33B-38E1-471A-A3B6-6DE2941BB375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC4EADF0-49E8-41FE-A403-C09649B94188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC4EADF0-49E8-41FE-A403-C09649B94188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC4EADF0-49E8-41FE-A403-C09649B94188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC4EADF0-49E8-41FE-A403-C09649B94188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{749F5286-254F-47B6-BBFA-F30E874CC9B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{749F5286-254F-47B6-BBFA-F30E874CC9B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{749F5286-254F-47B6-BBFA-F30E874CC9B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{749F5286-254F-47B6-BBFA-F30E874CC9B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FE4B3A4-2BC7-4372-B0CC-40776C3E93C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FE4B3A4-2BC7-4372-B0CC-40776C3E93C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FE4B3A4-2BC7-4372-B0CC-40776C3E93C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FE4B3A4-2BC7-4372-B0CC-40776C3E93C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
