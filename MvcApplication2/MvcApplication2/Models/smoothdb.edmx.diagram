@@ -5,9 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="720c8dbe7f9c4a89869fb8409f605a5f" Name="Diagram1">
-        <EntityTypeShape EntityType="smoothdbModel.CUSTOMER_RECORDS" Width="2.375" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="smoothdbModel.MEMBER_INFO" Width="2" PointX="3.25" PointY="0.5" />
-        <AssociationConnector Association="smoothdbModel.MEMBER_INFOCUSTOMER_RECORDS" />
+        <EntityTypeShape EntityType="smoothdbModel.MEMBER_INFO" Width="2" PointX="4.125" PointY="0.5" />
+        <EntityTypeShape EntityType="smoothdbModel.MEMBER_INFO2" Width="2.75" PointX="4" PointY="4.25" />
+        <EntityTypeShape EntityType="smoothdbModel.Table2" Width="1.75" PointX="7.625" PointY="0.75" />
+        <EntityTypeShape EntityType="smoothdbModel.CUSTOMER_RECORDS" Width="2.625" PointX="0.5" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

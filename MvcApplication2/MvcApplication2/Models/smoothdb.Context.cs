@@ -24,7 +24,14 @@ namespace MvcApplication2.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<CUSTOMER_RECORDS> CUSTOMER_RECORDS { get; set; }
         public DbSet<MEMBER_INFO> MEMBER_INFO { get; set; }
+        public DbSet<MEMBER_INFO2> MEMBER_INFO2 { get; set; }
+        public DbSet<Table2> Table2 { get; set; }
+        public DbSet<CUSTOMER_RECORDS> CUSTOMER_RECORDS { get; set; }
+        public DbSet<ContentModels> CONTENT { get; set; }
+
+
+
     }
+
 }

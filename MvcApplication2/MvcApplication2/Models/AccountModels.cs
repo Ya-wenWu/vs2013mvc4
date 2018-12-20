@@ -73,7 +73,7 @@ namespace MvcApplication2.Models
     }
 
     /// <summary>
-    /// 使用者登入頁面模組
+    /// 使用者登入頁面物件(輸入的帳號+輸入的密碼+是否持續登入)用於資料繫結
     /// </summary>
     public class LoginModel
     {

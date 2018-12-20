@@ -16,16 +16,14 @@ namespace MvcApplication2.Models
     {
         public int NO { get; set; }
         public int MEMBER_ID { get; set; }
-        public int DATE_Y { get; set; }
-        public int DATE_M { get; set; }
-        public int DATE_D { get; set; }
-        public int COST { get; set; }
-        public int KEYWORD { get; set; }
-        public int RECEIPT_NUM { get; set; }
-        public System.DateTime MODIFY_DATE { get; set; }
+        public Nullable<int> DATE_Y { get; set; }
+        public Nullable<int> DATE_M { get; set; }
+        public Nullable<int> DATE_D { get; set; }
+        public Nullable<double> COST { get; set; }
+        public Nullable<int> KEYWORD { get; set; }
+        public Nullable<int> RECEIPT_NUM { get; set; }
+        public Nullable<System.DateTime> MODIFY_DATE { get; set; }
         public string MODIFY_USER { get; set; }
-        public string CONTENT { get; set; }
-    
-        public virtual MEMBER_INFO MEMBER_INFO { get; set; }
+        public string NOTE { get; set; }
     }
 }

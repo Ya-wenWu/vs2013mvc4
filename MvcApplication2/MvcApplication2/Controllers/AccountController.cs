@@ -13,13 +13,20 @@ using MvcApplication2.Models;
 
 namespace MvcApplication2.Controllers
 {
+    /// <summary>
+    /// Account 類別
+    /// </summary>
     [Authorize]
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
         // GET: /Account/Login
-
+        /// <summary>
+        /// 未登錄使用者時 顯示登入
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -29,7 +36,12 @@ namespace MvcApplication2.Controllers
 
         //
         // POST: /Account/Login
-
+        /// <summary>
+        /// 傳入輸入的資料後進行登入的處理程序
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -37,7 +49,7 @@ namespace MvcApplication2.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                return RedirectToLocal(returnUrl);
+                return RedirectToLocal(returnUrl);//確認localurl是否存在
             }
 
             // If we got this far, something failed, redisplay form
@@ -47,7 +59,10 @@ namespace MvcApplication2.Controllers
 
         //
         // POST: /Account/LogOff
-
+        /// <summary>
+        /// 登出
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -59,7 +74,10 @@ namespace MvcApplication2.Controllers
 
         //
         // GET: /Account/Register
-
+        /// <summary>
+        /// ACTION:註冊
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -68,7 +86,11 @@ namespace MvcApplication2.Controllers
 
         //
         // POST: /Account/Register
-
+        /// <summary>
+        /// 註冊新帳號-引入註冊模組
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -95,7 +117,12 @@ namespace MvcApplication2.Controllers
 
         //
         // POST: /Account/Disassociate
-
+        /// <summary>
+        /// 顯示登錄者姓名(待確認)
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="providerUserId"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Disassociate(string provider, string providerUserId)
@@ -124,7 +151,11 @@ namespace MvcApplication2.Controllers
 
         //
         // GET: /Account/Manage
-
+        /// <summary>
+        /// 帳號密碼修正
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -139,7 +170,11 @@ namespace MvcApplication2.Controllers
 
         //
         // POST: /Account/Manage
-
+        /// <summary>
+        /// 處理會員帳號登入邏輯,引用LocalPasswordModel
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Manage(LocalPasswordModel model)
@@ -202,7 +237,12 @@ namespace MvcApplication2.Controllers
 
         //
         // POST: /Account/ExternalLogin
-
+        /// <summary>
+        /// 回傳持續登入紀錄的結果
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -246,7 +286,12 @@ namespace MvcApplication2.Controllers
 
         //
         // POST: /Account/ExternalLoginConfirmation
-
+        /// <summary>
+        /// 持續登入時認證函式
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns>重新導向VIEW和存入資料庫內</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -292,13 +337,20 @@ namespace MvcApplication2.Controllers
 
         //
         // GET: /Account/ExternalLoginFailure
-
+        /// <summary>
+        /// 保持登入失敗
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
             return View();
         }
-
+        /// <summary>
+        /// 維持登入的清單
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [ChildActionOnly]
         public ActionResult ExternalLoginsList(string returnUrl)
@@ -307,6 +359,10 @@ namespace MvcApplication2.Controllers
             return PartialView("_ExternalLoginsListPartial", OAuthWebSecurity.RegisteredClientData);
         }
 
+        /// <summary>
+        /// 取消保持登入
+        /// </summary>
+        /// <returns></returns>
         [ChildActionOnly]
         public ActionResult RemoveExternalLogins()
         {
@@ -329,6 +385,11 @@ namespace MvcApplication2.Controllers
         }
 
         #region Helpers
+        /// <summary>
+        /// 重新導向回首頁或View
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -340,14 +401,18 @@ namespace MvcApplication2.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
+        /// <summary>
+        /// 管理訊息編號???,總共三個列舉變數
+        /// </summary>
         public enum ManageMessageId
         {
             ChangePasswordSuccess,
             SetPasswordSuccess,
             RemoveLoginSuccess,
         }
-
+        /// <summary>
+        /// 不太確定實際內容
+        /// </summary>
         internal class ExternalLoginResult : ActionResult
         {
             public ExternalLoginResult(string provider, string returnUrl)
@@ -364,7 +429,11 @@ namespace MvcApplication2.Controllers
                 OAuthWebSecurity.RequestAuthentication(Provider, ReturnUrl);
             }
         }
-
+        /// <summary>
+        /// 註冊新帳號時使用的回覆訊息框內容
+        /// </summary>
+        /// <param name="createStatus"></param>
+        /// <returns>錯誤訊息內容</returns>
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {
             // See http://go.microsoft.com/fwlink/?LinkID=177550 for

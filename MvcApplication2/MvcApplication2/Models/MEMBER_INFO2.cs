@@ -12,7 +12,7 @@ namespace MvcApplication2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MEMBER_INFO
+    public partial class MEMBER_INFO2
     {
         public int NO { get; set; }
         public int MEMBER_ID { get; set; }

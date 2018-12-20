@@ -12,18 +12,8 @@ namespace MvcApplication2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MEMBER_INFO
+    public partial class Table2
     {
-        public int NO { get; set; }
-        public int MEMBER_ID { get; set; }
-        public string NAME { get; set; }
-        public int PHONE { get; set; }
-        public int HOME_TEL { get; set; }
-        public System.DateTime CREATE_DATE { get; set; }
-        public int KEYWORD { get; set; }
-        public int RECEIPT_NUM { get; set; }
-        public System.DateTime MODIFY_DATE { get; set; }
-        public string MODIFY_USER { get; set; }
-        public string IDENTITY_ID { get; set; }
+        public int table2_Id { get; set; }
     }
 }

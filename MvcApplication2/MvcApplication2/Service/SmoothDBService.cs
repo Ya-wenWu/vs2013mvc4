@@ -14,11 +14,11 @@ namespace MvcApplication2.Service
     /// </summary>
     public class SmoothDBService
     {
-      public MvcApplication2.Models.smoothdbEntities db = new Models.smoothdbEntities();
+         smoothdbEntities db = new smoothdbEntities();
 
         #region  取得資料庫中，CISTOMER_RECORDS資料表的資料並回傳
         public List<CUSTOMER_RECORDS> GetSmoothData()
-       {
+        {
           try
           {
               return (db.CUSTOMER_RECORDS.ToList());
@@ -37,7 +37,7 @@ namespace MvcApplication2.Service
               tmp_res.Add(new CUSTOMER_RECORDS { RECEIPT_NUM = 00000000 });
               tmp_res.Add(new CUSTOMER_RECORDS { MODIFY_DATE = DateTime.Now });
               tmp_res.Add(new CUSTOMER_RECORDS { MODIFY_USER = "exception error" });
-              tmp_res.Add(new CUSTOMER_RECORDS { CONTENT = "exception recore"+ex.Message.ToString() });
+              //tmp_res.Add(new CUSTOMER_RECORDS { CONTENT = "exception recore"+ex.Message.ToString() });
               #endregion
               return tmp_res;
           } 
@@ -52,7 +52,7 @@ namespace MvcApplication2.Service
 
             //todo:存入會員編號時的資料型態會出現問題
             //NewData.MEMBER_ID = int.Parse(string.Format("{0:yyyyMMdd},{1:###########}", DateTime.Now, _keyword));     //yyyymmdd+手機號碼(keyword:09xxxxxxxx)共18碼
-            NewData.MEMBER_ID = 1;
+            NewData.MEMBER_ID = int.Parse(_keyword);
 
             NewData.DATE_Y = int.Parse(tmp_dt.Year.ToString());                   //年
             NewData.DATE_M = int.Parse(tmp_dt.Month.ToString());                  //月
@@ -65,6 +65,7 @@ namespace MvcApplication2.Service
             NewData.RECEIPT_NUM = 1234567897;
             NewData.MODIFY_DATE = DateTime.Now;
             NewData.MODIFY_USER = "SYS".ToString();
+            NewData.NOTE = "NONE".ToString();
            
             //新增一筆資料
             db.CUSTOMER_RECORDS.Add(NewData);
@@ -101,5 +102,24 @@ namespace MvcApplication2.Service
             db.SaveChanges();//儲存資料庫變更
         }
         #endregion
+
+        /// <summary>
+        /// 加入留言內容(Smoothdb的CONTENT table)
+        /// </summary>
+        /// <param name="_name"></param>
+        /// <param name="_content"></param>
+        public void Create_Conent(string _name, string _content)
+        {
+            ContentModels adddata = new ContentModels();
+
+            //資料繫結
+            adddata.Message_name = _name;
+            adddata.Message_content = _content;
+
+            //將資料加入content資料表中
+            //db.ContentModels.Add(adddata);
+            db.CONTENT.Add(adddata);
+            db.SaveChanges();
+        }
     }
 }
